@@ -1,0 +1,15 @@
+nav {
+  background-color: #333333;
+  padding-inline: 1rem;
+  padding-block: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  .nav-link {
+    margin-inline: 0.5rem;
+    text-decoration: none;
+  }
+  .active-link {
+    color: #e8f79a;
+    border-bottom: 2px solid #e8f79a;
+  }
+}
