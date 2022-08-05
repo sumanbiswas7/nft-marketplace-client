@@ -1,10 +1,9 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 
 function Purchase(): JSX.Element {
   return (
     <>
-      <NavBar />
+      <h1>Buy Nfts</h1>
     </>
   );
 }

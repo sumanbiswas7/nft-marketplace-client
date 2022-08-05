@@ -1,7 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
 import "./NavBar.scss";
+interface Props {
+  account: string | null;
+  web3Handler: () => Promise<void>;
+}
 
-function NavBar() {
+function NavBar({ web3Handler, account }: Props) {
   const location = useLocation();
 
   return (
@@ -10,7 +14,7 @@ function NavBar() {
       <ul>
         <NavLink
           className={`nav-link ${
-            location.pathname == "/" ? "active-link" : ""
+            location.pathname === "/" ? "active-link" : ""
           }`}
           to={"/"}
         >
@@ -18,7 +22,7 @@ function NavBar() {
         </NavLink>
         <NavLink
           className={`nav-link ${
-            location.pathname == "/purchase" ? "active-link" : ""
+            location.pathname === "/purchase" ? "active-link" : ""
           }`}
           to={"/purchase"}
         >
@@ -26,7 +30,7 @@ function NavBar() {
         </NavLink>
         <NavLink
           className={`nav-link ${
-            location.pathname == "/create" ? "active-link" : ""
+            location.pathname === "/create" ? "active-link" : ""
           }`}
           to={"/create"}
         >
@@ -34,12 +38,21 @@ function NavBar() {
         </NavLink>
         <NavLink
           className={`nav-link ${
-            location.pathname == "/listed" ? "active-link" : ""
+            location.pathname === "/listed" ? "active-link" : ""
           }`}
           to={"/listed"}
         >
           Listed
         </NavLink>
+        {account ? (
+          <button className="btn acc-btn">
+            {account.slice(0, 5) + "..." + account.slice(38, 42)}
+          </button>
+        ) : (
+          <button className="btn connect-btn" onClick={web3Handler}>
+            Connect Wallet
+          </button>
+        )}
       </ul>
     </nav>
   );

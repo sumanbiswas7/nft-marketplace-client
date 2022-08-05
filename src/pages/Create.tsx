@@ -1,10 +1,14 @@
+import { ethers } from "ethers";
 import React from "react";
-import NavBar from "../components/NavBar";
+interface Props {
+  marketplace: ethers.Contract | null;
+  nft: ethers.Contract | null;
+}
 
-function Create(): JSX.Element {
+function Create({ marketplace, nft }: Props): JSX.Element {
   return (
     <>
-      <NavBar />
+      <h1>Create Nfts</h1>
     </>
   );
 }

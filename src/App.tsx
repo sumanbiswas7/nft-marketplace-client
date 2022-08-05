@@ -1,12 +1,16 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import marketplaceAddress from "./contractsData/Marketplace-address.json";
 import marketplaceAbi from "./contractsData/Marketplace.json";
 import nftAddress from "./contractsData/NFT-address.json";
 import nftAbi from "./contractsData/NFT.json";
 import "./App.scss";
 import NavBar from "./components/NavBar";
+import { Route, Routes } from "react-router-dom";
+import Purchase from "./pages/Purchase";
+import Listed from "./pages/Listed";
+import Create from "./pages/Create";
 declare global {
   interface Window {
     ethereum?: MetaMaskInpageProvider | any;
@@ -15,9 +19,9 @@ declare global {
 
 function App() {
   const [account, setAccount] = useState(null);
+  const [nftContract, setNftContract] = useState<ethers.Contract | null>(null);
   const [marketplaceContract, setMarketplaceContract] =
     useState<ethers.Contract | null>(null);
-  const [nftContract, setNftContract] = useState<ethers.Contract | null>(null);
 
   async function web3Handler() {
     const accounts = await window.ethereum?.request({
@@ -41,13 +45,19 @@ function App() {
     console.log(nft);
   }
 
-  useEffect(() => {
-    web3Handler();
-  }, []);
-
   return (
     <div className="App">
-      <NavBar />
+      <NavBar web3Handler={web3Handler} account={account} />
+      <Routes>
+        <Route path="/purchase" element={<Purchase />} />
+        <Route path="/listed" element={<Listed />} />
+        <Route
+          path="/create"
+          element={
+            <Create marketplace={marketplaceContract} nft={nftContract} />
+          }
+        />
+      </Routes>
     </div>
   );
 }

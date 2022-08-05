@@ -3,10 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Purchase from "./pages/Purchase";
-import Listed from "./pages/Listed";
-import Create from "./pages/Create";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,12 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/purchase" element={<Purchase />} />
-        <Route path="/listed" element={<Listed />} />
-        <Route path="/create" element={<Create />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );

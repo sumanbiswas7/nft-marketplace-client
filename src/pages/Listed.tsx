@@ -1,10 +1,9 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 
 function Listed(): JSX.Element {
   return (
     <>
-      <NavBar />
+      <h1>Listed Nfts</h1>
     </>
   );
 }
